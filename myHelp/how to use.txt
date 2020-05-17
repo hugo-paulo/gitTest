@@ -1,0 +1,140 @@
+if download commander full version has git included
+
+/*********************** user config ************************************/
+
+git config --global user.name <the git user name ?>
+
+git config --global user.email <your email>
+
+when git config user.name  -> displays your username that was set, same for email
+
+/*******************  commands same as linux:  ***************************/
+
+thus,
+touch index.html --> creates html file
+code index.html  --> opens the file with code  
+
+/***********************  git file placement  *****************************/
+
+the location of the .git file determines what will be the repo
+
+git init  --> to create a git file, like node js
+
+
+/*****************  tracking and adding/removing from staging  **************************/
+
+when we make changes to file the color will change to green, meaning its changed
+git status   --> shows its status
+
+to stage the file, making it ready for commit
+git add <name of the file>  --> git add index.html  //single files
+
+git add .  //multiple files (dot means all)
+
+if want to remove file from staging this gitstatus gives the command
+
+git rm --cached <filename>
+
+
+/****************************  making commits  ********************************************/
+
+git commit -m "my message"   --> commit the files in stagin and -m flag adds a message
+
+-- inside the brackets [the branch (root commit?) the commit id]
+
+each commit is a snap shot 
+
+/***************************  to view the commit history  ********************************/
+
+git log  -->  show the commits made
+
+git log --online  --> summary of above
+
+/******************************  undoing things/ rewind  **********************************/
+
+--levels of danger
+
+--Checkout commit (green)
+
+git checkout <commit id>  --> the commit id is gotten from using gitlog --oneline
+eg: git checkout 819f199
+
+git checkout master  --> goes back to master, seems need to run this command after above
+
+--Revert commit (yellow)
+
+git revert <commit id>  --> can undo a specific change, this opens a vim like editor (shift + : then wq)
+eg: git revert 819f199
+
+
+--Reset commit (red == danger)
+
+git reset <commit id> --hard
+git reset 819f199 --hard     --> will hard delete a commit and cant get it back
+
+
+/*********************************** branches *********************************************/ 
+
+master branch is the main line of the code and normally will be released or published
+no new features or code here
+
+to test new features we branch from the main branch, if its good we merge it back
+
+//to create a new branch
+
+git branch <the branchs name>
+eg git branch newFeature-1
+
+//to list all the branches
+git branch -a  --> master will have *master
+
+git checkout <branch name>
+eg: git checkout newFeature-1  --> moves to the selected branch
+
+eg: git branch master  --> to return to the master branch
+
+------------------  to remove a branch  --------------------
+move to the master branch
+
+//the difference between lower and upper, lower for deleting merger branches and upper when not merged 
+
+git branch -d or -D <the branchs name>
+eg: git branch -d or -D newFeature-1
+
+//quick way of creating brach and checking it out
+
+git checkout -b <the branchs name>
+eg: git checkout -b newFeature-2
+
+
+/***************************  merging branches  ***********************************/
+
+to merge a branch you need to be on that branch you want to merge to.
+thus from newFeature-2  <-
+
+git checkout master  --> moves to the master branch
+
+git merge <name of branch>
+eg: git merge newFeature-2
+
+
+/******************************  conflicts  **************************************/
+
+if an edit is made dirrectly to the master branch (shouldnt be done),
+from the perspective of the newFeature-2 branch, we have no knowledge of edits made to master branch
+if an edit is made to this alternative branch (newFeature-2) and merge is made, this will cause conflict
+
+git will show us on the text editor the two conflict and we decide which one will remain, this is done by
+
+so first delete the git comment of the changes we want to keep,
+then follow the normal process
+eg in master 
+
+git add.
+git commit
+
+/**************************  connecting to github  **********************************/
+
+making a remote repo
+
+if project has not yet started create in github first
